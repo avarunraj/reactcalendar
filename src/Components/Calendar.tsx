@@ -77,7 +77,7 @@ export const Calendar: FC<CalendarPropsTypes> = ({ date }) => {
   const days = utils.isLeapYear(date.getFullYear()) ? DAYS_LEAP : DAYS;
 
   return (
-    <CalendarFrame>
+    <CalendarFrame id={"calendar-frame"}>
       <Header>
         <div>
           {MONTHS[month]} {year}
