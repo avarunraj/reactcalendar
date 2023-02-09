@@ -9,6 +9,8 @@ const CalendarFrame = styled.div`
   box-shadow: 2px 2px 2px #eee;
   background: #09171d;
   color: #728284;
+  font-family: "Roboto Mono";
+  font-weight: 600;
 `;
 
 const CalendarHeader = styled.div`
