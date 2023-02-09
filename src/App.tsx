@@ -2,11 +2,10 @@ import "./App.css";
 import { Calendar } from "./Components/Calendar";
 
 const App = () => {
-  let tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
+  let day = new Date(2023, 2, 11);
   return (
     <div className="App">
-      <Calendar date={tomorrow} />
+      <Calendar date={day} />
     </div>
   );
 };
