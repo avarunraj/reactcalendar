@@ -47,19 +47,38 @@ test("it should have expected initial value", () => {
   const dom = render(<Calendar date={randomDay} />);
 
   const calendarMonth = getById(dom.container, "calendar-month");
+  const MONTHS = [
+    "Janury",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
   // checking calendar month text is correct
-  expect(calendarMonth).toHaveTextContent("March");
+  expect(calendarMonth).toHaveTextContent(MONTHS[randomDay.getMonth()]);
 
   const calendarYear = getById(dom.container, "calendar-year");
   // checking calendar month text is correct
-  expect(calendarYear).toHaveTextContent("2023");
+  expect(calendarYear).toHaveTextContent(randomDay.getFullYear().toString());
 
   //check if current day is highlighted
-  const selectedDayItem = getByText(dom.container, "8");
+  const selectedDayItem = getByText(
+    dom.container,
+    randomDay.getDate().toString()
+  );
   expect(selectedDayItem).toHaveStyle(`background:#839496`);
 
-  //check if any other day is not higlighted
-  for (let index = 1; index <= randomDay.getDate(); index++) {
+  //check if any other days are not higlighted
+  let date = new Date(randomDay.getFullYear(), randomDay.getMonth() + 1, 0);
+  const totalDaysInMonth = date.getDate();
+  for (let index = 1; index < totalDaysInMonth; index++) {
     const selectedDayItem = getByText(dom.container, index.toString());
     if (selectedDayItem && index !== 8) {
       expect(selectedDayItem).not.toHaveStyle(`background:#839496`);
