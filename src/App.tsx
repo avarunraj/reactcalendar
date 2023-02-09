@@ -1,9 +1,10 @@
-import './App.css';
+import "./App.css";
+import { Calendar } from "./Components/Calendar";
 
 function App() {
   return (
     <div className="App">
-      test
+      <Calendar />
     </div>
   );
 }
