@@ -16,6 +16,13 @@ const CalendarHeader = styled.div`
   padding: 10px 10px 5px 10px;
   display: flex;
   justify-content: center;
+  .date-header {
+    display: inline-flex;
+    .month,
+    .year {
+      padding: 0.2rem;
+    }
+  }
 `;
 
 const CalendarBody = styled.div`
@@ -78,14 +85,19 @@ export const Calendar: FC<CalendarPropsTypes> = ({ date }) => {
 
   return (
     <CalendarFrame id={"calendar-frame"}>
-      <CalendarHeader>
-        <div>
-          {MONTHS[month]} {year}
+      <CalendarHeader id={"calendar-header"}>
+        <div className="date-header">
+          <div className="month" id={"calendar-month"}>
+            {MONTHS[month]}
+          </div>
+          <div className="year" id={"calendar-year"}>
+            {year}
+          </div>
         </div>
       </CalendarHeader>
-      <CalendarBody>
-        {DAYS_OF_THE_WEEK.map((dayItemValue) => (
-          <CalendarDayBlock key={dayItemValue}>
+      <CalendarBody id={"calendar-body"}>
+        {DAYS_OF_THE_WEEK.map((dayItemValue, index) => (
+          <CalendarDayBlock key={dayItemValue} id={`calendar-day-${index + 1}`}>
             <div>{dayItemValue}</div>
           </CalendarDayBlock>
         ))}
