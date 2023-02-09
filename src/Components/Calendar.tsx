@@ -1,13 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import styled, { css } from "styled-components";
-
-type dayType = {
-  isToday?: boolean;
-  isSelected?: boolean;
-};
+import { CalendarPropsTypes, dayType } from "../Common/types";
 
 const Frame = styled.div`
-  width: 400px;
+  width: 18rem;
   border: 1px solid lightgrey;
   box-shadow: 2px 2px 2px #eee;
   background: #09171d;
@@ -29,27 +25,21 @@ const Body = styled.div`
 
 const Day = styled.div<dayType>`
   width: 14.2%;
-  height: 40px;
+  height: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 
   ${(props: dayType) =>
-    props.isToday &&
-    css`
-      border: 1px solid #eee;
-    `}
-
-  ${(props: dayType) =>
-    props.isSelected &&
+    props.isSelectedDate &&
     css`
       background-color: #839496;
       color: #011216;
     `}
 `;
 
-export const Calendar = () => {
+export const Calendar: FC<CalendarPropsTypes> = ({ date }) => {
   const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const DAYS_OF_THE_WEEK = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
@@ -68,8 +58,6 @@ export const Calendar = () => {
     "December",
   ];
 
-  const today = new Date();
-  const [date, setDate] = useState(today);
   const [day, setDay] = useState(date.getDate());
   const [month, setMonth] = useState(date.getMonth());
   const [year, setYear] = useState(date.getFullYear());
@@ -82,8 +70,8 @@ export const Calendar = () => {
     setStartDay(getStartDayOfMonth(date));
   }, [date]);
 
-  function getStartDayOfMonth(date: Date) {
-    return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+  function getStartDayOfMonth(dateValue: Date) {
+    return new Date(dateValue.getFullYear(), dateValue.getMonth(), 1).getDay();
   }
 
   function isLeapYear(year: number) {
@@ -110,12 +98,7 @@ export const Calendar = () => {
           .map((_, index) => {
             const dayNumber = index - (startDay - 2);
             return (
-              <Day
-                key={index}
-                isToday={dayNumber === today.getDate()}
-                isSelected={dayNumber === day}
-                onClick={() => setDate(new Date(year, month, dayNumber))}
-              >
+              <Day key={index} isSelectedDate={dayNumber === day}>
                 {dayNumber > 0 ? dayNumber : ""}
               </Day>
             );

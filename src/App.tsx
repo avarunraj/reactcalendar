@@ -1,12 +1,14 @@
 import "./App.css";
 import { Calendar } from "./Components/Calendar";
 
-function App() {
+const App = () => {
+  let tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
   return (
     <div className="App">
-      <Calendar />
+      <Calendar date={tomorrow} />
     </div>
   );
-}
+};
 
 export default App;
