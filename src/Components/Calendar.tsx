@@ -11,21 +11,21 @@ const CalendarFrame = styled.div`
   color: #728284;
 `;
 
-const Header = styled.div`
+const CalendarHeader = styled.div`
   font-size: 18px;
   padding: 10px 10px 5px 10px;
   display: flex;
   justify-content: center;
 `;
 
-const Body = styled.div`
+const CalendarBody = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   padding-bottom: 0.5rem;
 `;
 
-const Day = styled.div<dayType>`
+const CalendarDayBlock = styled.div<dayType>`
   width: 14.2%;
   height: 2rem;
   display: flex;
@@ -78,28 +78,31 @@ export const Calendar: FC<CalendarPropsTypes> = ({ date }) => {
 
   return (
     <CalendarFrame id={"calendar-frame"}>
-      <Header>
+      <CalendarHeader>
         <div>
           {MONTHS[month]} {year}
         </div>
-      </Header>
-      <Body>
+      </CalendarHeader>
+      <CalendarBody>
         {DAYS_OF_THE_WEEK.map((dayItemValue) => (
-          <Day key={dayItemValue}>
+          <CalendarDayBlock key={dayItemValue}>
             <div>{dayItemValue}</div>
-          </Day>
+          </CalendarDayBlock>
         ))}
         {Array(days[month] + (startDay - 1))
           .fill(null)
-          .map((_, index) => {
-            const dayNumber = index - (startDay - 1);
+          .map((_, indexValue) => {
+            const dayNumber = indexValue - (startDay - 1);
             return (
-              <Day key={index} isSelectedDate={dayNumber === day}>
+              <CalendarDayBlock
+                key={indexValue}
+                isSelectedDate={dayNumber === day}
+              >
                 {dayNumber > 0 ? dayNumber : ""}
-              </Day>
+              </CalendarDayBlock>
             );
           })}
-      </Body>
+      </CalendarBody>
     </CalendarFrame>
   );
 };
