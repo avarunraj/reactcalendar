@@ -1,46 +1,51 @@
-# Getting Started with Create React App
+# Getting Started with calendar
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was done as part of interview assessment
+Author : Arunraj A V
 
-## Available Scripts
+## Steps to run the project
 
+clone the file from git repo using command 'git clone <insert_url_here>'
+open the file and goto the project directory
 In the project directory, you can run:
+
+### `npm install`
+
+installs the dependencies mentioned in in package.json
 
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Open [http://localhost:3000] to view it in the browser.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Run jest test suites and view results
 
-### `npm run build`
+## Project Details
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This ReactJS based Application is using typescript template,
+a package called emotion to handle css (styled components),
+jest for unit testing.
+Application provides a calendar component
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+       Users can enter date as props and calendar will show the date with that month and day highlighted
+       usage example : <Calendar date={new Date()} />
+       input props   : date -> date to be shown in calendar
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Design/Architecture details
 
-### `npm run eject`
+The project is created with create-react-app development environment,The project structure includes
+1)Project Directory 
+2)src
+3)Public
+4)Components
+5)Node modules
+6)Common
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+\*)The source (src) folder is where all the essential files and folders are listed:
+eg) Components : The tsx files that is shown in DOM
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+\*)The public folder contains all of the project's static files, such as logo, fonts, images etc
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+\*)Resuable components are added in common here added types and util function
