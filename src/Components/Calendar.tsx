@@ -18,11 +18,7 @@ const Header = styled.div`
   font-size: 18px;
   padding: 10px 10px 5px 10px;
   display: flex;
-  justify-content: space-between;
-`;
-
-const Button = styled.div`
-  cursor: pointer;
+  justify-content: center;
 `;
 
 const Body = styled.div`
@@ -99,34 +95,28 @@ export const Calendar = () => {
   return (
     <Frame>
       <Header>
-        <Button onClick={() => setDate(new Date(year, month - 1, day))}>
-          Prev
-        </Button>
         <div>
           {MONTHS[month]} {year}
         </div>
-        <Button onClick={() => setDate(new Date(year, month + 1, day))}>
-          Next
-        </Button>
       </Header>
       <Body>
-        {DAYS_OF_THE_WEEK.map((d) => (
-          <Day key={d}>
-            <div>{d}</div>
+        {DAYS_OF_THE_WEEK.map((dayItemValue) => (
+          <Day key={dayItemValue}>
+            <div>{dayItemValue}</div>
           </Day>
         ))}
         {Array(days[month] + (startDay - 1))
           .fill(null)
           .map((_, index) => {
-            const d = index - (startDay - 2);
+            const dayNumber = index - (startDay - 2);
             return (
               <Day
                 key={index}
-                isToday={d === today.getDate()}
-                isSelected={d === day}
-                onClick={() => setDate(new Date(year, month, d))}
+                isToday={dayNumber === today.getDate()}
+                isSelected={dayNumber === day}
+                onClick={() => setDate(new Date(year, month, dayNumber))}
               >
-                {d > 0 ? d : ""}
+                {dayNumber > 0 ? dayNumber : ""}
               </Day>
             );
           })}
