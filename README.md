@@ -49,3 +49,8 @@ eg) Components : The tsx files that is shown in DOM
 \*)The public folder contains all of the project's static files, such as logo, fonts, images etc
 
 \*)Resuable components are added in common here added types and util function
+
+
+
+RUN : docker compose up -d --build to start the application in docker 
+      docker compose down : to stop the docker
